@@ -13,4 +13,15 @@ const PrivateRoute = ({ children }) => {
   return !user ? <Navigate to={redirectLoginUrl} /> : children;
 };
 
+const TaskPage = ({ children }) => {
+  // Fetching the user from the user context.
+  const { user } = useContext(UserContext);
+  const redirectLoginUrl = `/task`;
+
+  // If the user is not logged in we are redirecting them
+  // to the login page. Otherwise we are letting them to
+  // continue to the page as per the URL using <Outlet />.
+  return !user ? <Navigate to={redirectLoginUrl} /> : children;
+};
+
 export default PrivateRoute;
