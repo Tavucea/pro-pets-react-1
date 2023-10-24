@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { UserProvider } from './contexts/user.context';
 import { Dashboard, Home, LoginPage, PrivateRoute, Signup } from './Pages';
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -41,9 +43,11 @@ if(localStorage.getItem('i18nextLng') === null){
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <Provider store={store}>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </Provider>
   </React.StrictMode>
 );
 
